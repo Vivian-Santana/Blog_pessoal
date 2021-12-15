@@ -2,10 +2,12 @@ package org.generation.blogPessoal.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,12 +27,24 @@ public class Postagem {
 	private long id;
 
 	@NotNull
-	@Size(min = 5, max = 100)
+	@Size(min = 2, max = 100)
 	private String titulo;
 
 	@NotNull
 	@Size(min = 5, max = 500)
 	private String texto;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date = new java.sql.Date(System.currentTimeMillis());
+	
+
+	@ManyToOne (cascade= CascadeType.REMOVE)
+	@JoinColumn (name = "fk_tema")
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+	
+
+	//MÉTODOS GETTERS E SETTERS
 
 	public long getId() {
 		return id;
@@ -56,20 +70,14 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 	public Date getDate() {
 		return date;
 	}
 
-	@ManyToOne
-	@JsonIgnoreProperties("postagem")
-	private Tema tema;
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	private Date date = new java.sql.Date(System.currentTimeMillis());
 
 	public Tema getTema() {
 		return tema;
