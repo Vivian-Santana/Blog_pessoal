@@ -35,7 +35,7 @@ public class Postagem {
 	private String texto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis());
+	private Date data = new java.sql.Date(System.currentTimeMillis());
 	
 
 	@ManyToOne (cascade= CascadeType.REMOVE)
@@ -71,11 +71,11 @@ public class Postagem {
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		this.data = date;
 	}
 	
 	public Date getDate() {
-		return date;
+		return data;
 	}
 
 
