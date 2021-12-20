@@ -19,10 +19,11 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 
 	@Override // SOBRESCRITA DE METODO
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception { // THROW EXCEPTION É UMA TRATATIVA DE
-																					// ERRO
-
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception { // THROW EXCEPTION É UMA TRATATIVA DE ERRO
+	
 		auth.userDetailsService(userDetailsService);
+		auth.inMemoryAuthentication().withUser("boaz")
+		.password(passwordEncoder().encode("boaz")).authorities("Role_ADMIN");
 	}
 
 	@Bean
