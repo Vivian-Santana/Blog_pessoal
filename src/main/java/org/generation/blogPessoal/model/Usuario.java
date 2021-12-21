@@ -17,7 +17,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private long id; //ATRIBUTO
+	private long id; //ATRIBUTO 
 	
 	@NotNull     //PARA NÃO ACEITAR CAMPO NULO
 	@Size (min= 2, max = 100)  //TAMANHO DO NOME

@@ -43,7 +43,7 @@ public class SwaggerConfig {
 		return openApi -> {
 			openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
 				ApiResponses api = operation.getResponses();
-				
+				 
 				api.addApiResponse("200", createApiResponse("Sucess!"));
 				api.addApiResponse("201", createApiResponse("Created!"));
 				api.addApiResponse("400", createApiResponse("Request error!"));
