@@ -2,6 +2,7 @@ package org.generation.blogPessoal.service;
 
 import java.nio.charset.Charset;
 
+
 import java.util.Optional;
 
 import org.generation.blogPessoal.model.UserLogin;
@@ -51,7 +52,7 @@ public class UsuarioService {
 				return user;
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	// ATUALIZAR USUARIO
