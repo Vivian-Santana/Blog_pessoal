@@ -71,6 +71,9 @@ public class Postagem {
 		return tema;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
 	public void setId(long id) {
 		this.id = id;
@@ -96,11 +99,6 @@ public class Postagem {
 		this.tema = tema;
 	}
 	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}

@@ -39,6 +39,10 @@ public class Usuario {
 	@Size(min =5) //TAMNAHO DA SENHA
 	private String senha; //STRING PARA SENHA PQ SENHA TEM QUALQUER TIPO DE CARACTER
 	
+	private String foto;
+	
+	private String tipo; //TIPO DE USUÁRIO: ADMINISTRADOR OU USUÁRIO COMUM
+
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
@@ -51,42 +55,74 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+
 	public long getId() {
 		return id;
 	}
+
 
 	public String getNome() {
 		return nome;
 	}
 
+
 	public String getUsuario() {
 		return usuario;
 	}
+
 
 	public String getSenha() {
 		return senha;
 	}
 
+
+	public String getFoto() {
+		return foto;
+	}
+
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public List<Postagem> getPostagem() {
-		return postagem;
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
+
 }
