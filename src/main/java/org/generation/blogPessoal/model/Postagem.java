@@ -89,11 +89,9 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
