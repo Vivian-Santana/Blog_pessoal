@@ -1,7 +1,6 @@
 package org.generation.blogPessoal.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,7 +24,7 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private long id; //ATRIBUTO 
+	private Long id; //ATRIBUTO 
 	
 	@NotNull     //PARA NÃO ACEITAR CAMPO NULO
 	@Size (min= 2, max = 100)  //TAMANHO DO NOME
@@ -48,6 +49,10 @@ public class Usuario {
 	private List<Postagem> postagem;
 		
 
+	public Usuario(){  //CONSTRUTOR VAZIO QUE PUCHA A SUPER CLASSE PARA NÃO DAR ERRO DE LOGIN
+		   super();
+		}
+	
 	public Usuario(long id,  String nome, String usuario, String senha) {
 		this.id = id;
 		this.nome = nome;
@@ -56,7 +61,7 @@ public class Usuario {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -91,7 +96,7 @@ public class Usuario {
 	}
 
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
