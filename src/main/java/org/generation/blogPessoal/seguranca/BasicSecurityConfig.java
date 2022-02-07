@@ -18,7 +18,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -34,12 +34,18 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { // METODO QUE NÃO DEVOLVE NADA, VAI ESTANCIAR UM HTTP SECURITY QUE É UM OBJ
-		//CONF. QUE LIBERA END POINTS (ALGUNS CAMINHOS) DENTRO DO CONTROLLER PARA QUE O CLIENT TENHA ACESSO SEM PRECISAR PASSAR UMA CHAVE EM TOKEN
-		
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/usuarios/logar").permitAll() //LOGAR E CADASTRAR VAI SER LIVERADO PARA O CLIENT FAZER REQUISIÇÕES DENTRO DA API
-				.antMatchers(HttpMethod.POST, "/usuarios/cadastrar").permitAll().anyRequest().authenticated().and() 
-				.httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()//NÃO GUARDA SESSÃO NENHUMA
+	protected void configure(HttpSecurity http) throws Exception { // METODO QUE NÃO DEVOLVE NADA, VAI ESTANCIAR UM HTTP
+																	// SECURITY QUE É UM OBJ
+		// CONF. QUE LIBERA END POINTS (ALGUNS CAMINHOS) DENTRO DO CONTROLLER PARA QUE O
+		// CLIENT TENHA ACESSO SEM PRECISAR PASSAR UMA CHAVE EM TOKEN
+
+		http.authorizeRequests().antMatchers("/**").permitAll().antMatchers(HttpMethod.POST, "/usuarios/logar")
+				.permitAll() // LOGAR E CADASTRAR VAI SER LIVERADO PARA O CLIENT FAZER REQUISIÇÕES DENTRO DA
+								// API
+				.antMatchers(HttpMethod.POST, "/usuarios/cadastrar").permitAll()
+				.antMatchers(HttpMethod.GET, "/postagens").permitAll().antMatchers(HttpMethod.GET, "/tema").permitAll()
+				.anyRequest().authenticated().and().httpBasic().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()// NÃO GUARDA SESSÃO NENHUMA
 				.cors().and().csrf().disable();
 	}
 }
