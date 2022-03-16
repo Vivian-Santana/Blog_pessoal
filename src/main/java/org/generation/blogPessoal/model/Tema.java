@@ -15,19 +15,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_tema")
-
 public class Tema {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String descricao;
-	
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
+
+	//private long qtd;
+
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE) //QUANDO UM TEMA FOR EXCLUIDO TODAS AS POSTAGENS RELACIONADAS A ELE TAMBÉM SERÃO.
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
+
+	/**public long getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(long qtd) {
+		this.qtd = qtd;
+	}*/
 
 	public long getId() {
 		return id;
@@ -52,5 +61,5 @@ public class Tema {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
+
 }

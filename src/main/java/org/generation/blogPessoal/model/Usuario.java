@@ -30,8 +30,8 @@ public class Usuario {
 	@Size (min= 2, max = 100)  //TAMANHO DO NOME
 	private String nome; //ATRIBUTO
 	
-	@Size(min =5, max = 100) //TAMANHO DO NOME USUARIO 
 	@Schema(example = "email@email.com")
+	@Size(min =5, max = 100) //TAMANHO DO E-MAIL DO USUÁRIO
 	@NotNull(message = "O atributo Usuário é Obrigatório!")
 	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario; //ATRIBUTO
@@ -40,6 +40,7 @@ public class Usuario {
 	@Size(min =5) //TAMNAHO DA SENHA
 	private String senha; //STRING PARA SENHA PQ SENHA TEM QUALQUER TIPO DE CARACTER
 	
+	@Size(max = 500, message = "O link da foto não pode ser maior do que 500 caractéres")
 	private String foto;
 	
 	private String tipo; //TIPO DE USUÁRIO: ADMINISTRADOR OU USUÁRIO COMUM
@@ -53,9 +54,10 @@ public class Usuario {
 		   super();
 		}
 	
-	public Usuario(long id,  String nome, String usuario, String senha) {
+	public Usuario(long id,  String nome, String foto, String usuario, String senha) {
 		this.id = id;
 		this.nome = nome;
+		this.foto = foto;
 		this.usuario = usuario;
 		this.senha = senha;
 	}

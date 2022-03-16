@@ -3,6 +3,7 @@ package org.generation.blogPessoal.model;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,13 +16,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name = "postagem")
+@Entity //ANOTAÇÃO INDICANDO QUE A POSTAGEM É UMA ENTIDADE DO JPA HIBERNATE
+@Table(name = "postagem") //INDICA QUE A ENTIDADE VAI CRIAR UAM TABELA DE NOME "POSTAGEM"
 
 public class Postagem {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //INDICA QUE O ID VAI SER UMA CHAVE PRIMARIA (PRIMARY KEY)
 	private long id;
 
 	@NotNull
@@ -32,19 +33,17 @@ public class Postagem {
 	@Size(min = 5, max = 500)
 	private String texto;
 	
-	@Temporal(TemporalType.TIMESTAMP) 
-	private Date data = new java.sql.Date(System.currentTimeMillis());
+	@Temporal(TemporalType.TIMESTAMP) //INDICA O TEMPO PARA O JPA HIBERNATE
+	private Date data = new java.sql.Date(System.currentTimeMillis()); //COLOCA A DATA E HORA DA POSTAGEM 
 	
-
-	@ManyToOne (cascade= CascadeType.REMOVE)
-	@JoinColumn (name = "fk_tema")
+	@ManyToOne
+	@JoinColumn(name = "fk_tema")
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
-
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
-
 
 	public long getId() {
 		return id;
